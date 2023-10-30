@@ -1,0 +1,1 @@
+select idmonitor, namemonitor, voltagemonitor, usegsyncpremmonitor, curvedmonitor, iddisplay, namedisplay, lengthdiagonaldisplay, resolutiondisplay, matrixdisplay, usegsync from monitor join display on display.iddisplay = monitor.displaymonitorid;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./static/style.css">
+
+</head>
+<body class="bg-sky-50">
+<div class="content flex justify-center items-center min-w-screen min-h-screen">
+    <div class="bg-sky-200 px-4 py-2 rounded-md w-96">
+        <h1 class="text-center font-bold text-zinc-500 mb-3 text-xl">Регистрация</h1>
+        <div class="9/10">
+            <div class="flex flex-col">
+                <input class="border 1px gray px-1 py-2 mb-1" name="email" type="text" placeholder="Email">
+                <input class="border 1px gray px-1 py-2" name="password" type="password" placeholder="Password">
+                <input class="border 1px gray px-1 py-2" name="password-repeat" type="password" placeholder="Repeate password">
+            </div>
+            <button class="reg-btn mt-3 w-full bg-indigo-600 py-2 rounded-md text-white font-bold">Зарегистрироваться</button>
+        </div>
+        <div class="text-center mt-1">
+            <a class="text-indigo-600 hover:text-indigo-700" href="/login">Вернуться на страницу входа</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+<script>
+    const regBtn = document.querySelector('button')
+    regBtn.addEventListener('click', async (event)=>{
+        event.preventDefault()
+        const email = document.querySelector('[name="email"]').value
+        const password = document.querySelector('[name="password"]').value
+        const passwordRepeat = document.querySelector('[name="password-repeat"]').value
+        if(password === passwordRepeat){
+            const {data} = await axios.post('/api/reg', {
+                login: email,
+                password: password
+            })
+            console.log(data)
+            if(data === 'Created user'){
+                window.location.href = "/login"
+            }
+        }
+    })
+</script>
+</body>
+</html>

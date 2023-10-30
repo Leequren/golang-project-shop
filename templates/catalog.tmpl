@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./static/output.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"
+            integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="bg-sky-50">
+<div class="content flex flex-col justify-center items-center min-w-screen min-h-screen relative">
+    <div class="header w-full flex flex-row-reverse bg-gray-100 px-3 py-2  rounded-b-lg shadow">
+        <button class="btn-logout bg-indigo-500 text-white font-bold px-2 py-2 rounded-md">Выйти</button>
+        <button class="btn-open-popup bg-indigo-500 text-white font-bold px-2 py-2 rounded-md mr-2 ml-2">Добавить
+            монитор
+        </button>
+    </div>
+    <div class="catalog flex-auto flex justify-center flex-wrap">
+
+    </div>
+    <div class="footer w-full bg-gray-100 shadow shadow-2xl">
+        <div class="w-full px-2 py-8">
+            <p class="text-center text-gray-500 text-2xl  font-bold">В разработке</p>
+        </div>
+    </div>
+    <div class="hidden popup-form flex absolute p-6 border border-gray-200 bg-gray-100">
+        <div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Имя монитора</span>
+                <input type="text"
+                       class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-r-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                       name="name">
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Вольтаж монитора</span>
+                <input type="text"
+                       class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-r-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                       name="voltage">
+
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 w-full inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Наличие GSync</span>
+                <select name="gsync"
+                        class="block w-full border-transparent rounded-md focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-800">
+                    <option value="false">Нет</option>
+                    <option value="true">Да</option>
+                </select>
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 w-full inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Наличие GSync Prem</span>
+                <select name="gsync_prem"
+                        class="block w-full border-transparent rounded-md focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-800">
+                    <option value="false">Нет</option>
+                    <option value="true">Да</option>
+                </select>
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 w-full inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Изогнутый</span>
+                <select name="curved"
+                        class="block w-full border-transparent rounded-md focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-800">
+                    <option value="false">Нет</option>
+                    <option value="true">Да</option>
+                </select>
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Диагональ монитора</span>
+                <input type="text"
+                       class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-r-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                       name="diagonal">
+
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Разрешение монитора</span>
+                <input type="text"
+                       class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-r-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                       name="resolution">
+            </div>
+            <div class="flex rounded-md shadow-sm mb-2">
+                <span class="px-4 inline-flex items-center min-w-fit rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400">Тип матрицы монитора</span>
+                <input type="text"
+                       class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-r-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                       name="matrix">
+            </div>
+            <div class="btns">
+                <button class="btn-close bg-indigo-500 text-white font-bold px-2 py-2 rounded-md">закрыть</button>
+                <button class="btn-save bg-indigo-500 text-white font-bold px-2 py-2 rounded-md mr-2 ml-2">Сохранить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"
+        integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const logoutBtn = document.querySelector('.btn-logout')
+    logoutBtn.addEventListener('click', async (event) => {
+        event.preventDefault()
+        const {data} = await axios.get('/api/logout')
+        if (data === 'Logout Successful') {
+            window.location.href = '/login'
+        }
+    })
+</script>
+<script>
+    function createCardItem(item) {
+        const card = document.createElement('div')
+        card.classList.add("px-2", "py-2", "m-2", "border", "border-gray-300", "w-60")
+        card.innerHTML = `
+                               <h3>ID монитора: ${item.idMonitor}</h3>
+                               <h3>Имя монитора: ${item.nameMonitor}</h3>
+                               <h3>Вольтаж монитора: ${item.voltageMonitor}</h3>
+                               <h3>GSync: ${item.useGSync}</h3>
+                               <h3>Gsync premium: ${item.useGSyncPremMonitor}</h3>
+                               <h3>Изогнутый: ${item.curvedMonitor}</h3>
+                               <h3>ID дисплея монитора: ${item.displayMonitorId}</h3>
+                               <h3>Диагональ: ${item.lengthDiagonalDisplay}</h3>
+                               <h3>Разрешение монитора: ${item.resolutionDisplay}</h3>
+                               <h3>Тип матрицы монитора: ${item.matrixDisplay}</h3>
+                            `
+        return card
+    }
+
+    async function updateCatalog() {
+        const catalog = document.querySelector('.catalog')
+        catalog.innerHTML = ``
+        const {data} = await axios.get('/api/getAllMonitors')
+        const monitors = data.monitors
+        for (let monitor of monitors) {
+            const card = createCardItem(monitor)
+            catalog.appendChild(card)
+        }
+    }
+
+    const btnOpenPopup = document.querySelector('.btn-open-popup')
+    const popup = document.querySelector('.popup-form')
+    btnOpenPopup.addEventListener('click', () => {
+        popup.classList.toggle('hidden')
+    })
+
+    const btnClosePopup = document.querySelector('.btn-close')
+    btnClosePopup.addEventListener('click', () => {
+        popup.classList.toggle('hidden')
+    })
+
+    const btnSaveMonitor = document.querySelector('.btn-save')
+    btnSaveMonitor.addEventListener('click', async (eventSave) => {
+        eventSave.preventDefault()
+        const objData = {
+            name: document.querySelector('[name="name"]').value,
+            voltage: +(+document.querySelector('[name="voltage"]').value).toFixed(2),
+            gsync: document.querySelector('[name="gsync"]').value === 'true',
+            gsync_prem: document.querySelector('[name="gsync_prem"]').value === 'true',
+            curved: document.querySelector('[name="curved"]').value === 'true',
+            diagonal: +(+document.querySelector('[name="diagonal"]').value).toFixed(2),
+            resolution: document.querySelector('[name="resolution"]').value,
+            matrix: document.querySelector('[name="matrix"]').value
+        }
+        console.log(objData)
+        const {data} = await axios({
+            method: "POST",
+            url: "/api/addMonitorWithMatrixData",
+            data: objData,
+            headers: {
+                contentType: 'application/json'
+            }
+        })
+        console.log(data)
+        if(data === 'Monitor inserted'){
+            window.location.reload()
+        }
+    })
+    updateCatalog()
+</script>
+</body>
+</html>
